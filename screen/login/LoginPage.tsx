@@ -33,7 +33,7 @@ const LoginPage = () => {
           Sign in to access your dashboard and API analytics
         </Text>
         <View style={styles.loginDetail}>
-          <Text>
+          <Text style={styles.loginTextDetail}>
             <Text style={styles.spanBold}>Demo Login:</Text> Use any email with password:{' '}
             <Text style={styles.spanPass}>password</Text>
           </Text>
@@ -97,7 +97,7 @@ const styles = StyleSheet.create({
   },
   card: {
     backgroundColor: '#fff',
-    padding: 24,
+    padding: 18,
     borderRadius: 8,
     width: '100%',
     maxWidth: 500,
@@ -109,31 +109,35 @@ const styles = StyleSheet.create({
     elevation: 5,
   },
   headerTitle: {
-    fontSize: 24,
+    fontSize: 20,
     color: '#18181B',
     fontWeight: '700',
     textAlign: 'center',
   },
   headerTitle2: {
-    fontSize: 24,
+    fontSize: 20,
     color: '#18181B',
     fontWeight: '700',
     textAlign: 'center',
-    paddingTop: 18,
+    paddingTop: 6,
   },
   subHeader: {
-    fontSize: 16,
+    fontSize: 14,
     color: '#71717A',
     textAlign: 'center',
-    paddingVertical: 12,
+    paddingVertical: 10,
   },
   loginDetail: {
     backgroundColor: '#EFF6FF',
-    padding: 13,
+    padding: 12,
     borderRadius: 8,
     borderColor: '#BFDBFE',
     borderWidth: 1,
     marginBottom: 18,
+    
+  },
+  loginTextDetail:{
+fontSize:11
   },
   spanBold: {
     fontWeight: '700',
@@ -146,7 +150,7 @@ const styles = StyleSheet.create({
     marginBottom: 16,
   },
   label: {
-    fontSize: 20,
+    fontSize: 15,
     fontWeight: '500',
     marginBottom: 8,
   },
@@ -154,8 +158,8 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#BFDBFE',
     borderRadius: 8,
-    padding: 16,
-    fontSize: 17,
+    padding: 12,
+    fontSize: 14,
     backgroundColor: 'transparent',
   },
   passwordWrapper: {
@@ -165,7 +169,7 @@ const styles = StyleSheet.create({
   toggleBtn: {
     position: 'absolute',
     right: 10,
-    top: 18,
+    top: 14,
   },
   toggleText: {
     fontSize: 12,
@@ -179,13 +183,13 @@ const styles = StyleSheet.create({
   },
   submitBtn: {
     backgroundColor: '#18181B',
-    padding: 16,
+    padding: 12,
     borderRadius: 8,
     alignItems: 'center',
   },
   btnText: {
     color: '#fff',
-    fontSize: 18,
+    fontSize: 15,
     fontWeight: '500',
   },
   disabledBtn: {
