@@ -44,6 +44,7 @@ const router = useRouter();
           <Text style={styles.label}>Email</Text>
           <TextInput
             style={styles.input}
+            testID="email-input"
             placeholder="name@example.com"
             keyboardType="email-address"
             value={formData.email}
@@ -58,12 +59,14 @@ const router = useRouter();
             <TextInput
               style={styles.input}
               placeholder="Password"
+              testID="password-input"
               value={formData.password}
               onChangeText={(text) => handleChange('password', text)}
               secureTextEntry={!showPassword}
             />
             <TouchableOpacity
               style={styles.toggleBtn}
+              testID="toggle-password-visibility"
               onPress={() => setShowPassword((prev) => !prev)}
             >
               <Text style={styles.toggleText}>{showPassword ? 'Hide' : 'Show'}</Text>
@@ -71,16 +74,17 @@ const router = useRouter();
           </View>
         </View>
 
-        <TouchableOpacity >
+        <TouchableOpacity testID="forgot-password-link">
           <Text style={styles.forgotLink}>Forgot password?</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
           style={[styles.submitBtn, isLoading && styles.disabledBtn]}
           onPress={handleSubmit}
+          testID="submit-button"
           disabled={isLoading}
         >
-          {isLoading ? <ActivityIndicator color="#fff" /> : <Text style={styles.btnText}>Login</Text>}
+          {isLoading ? <ActivityIndicator testID="loading-indicator" color="#fff" /> : <Text style={styles.btnText}>Login</Text>}
         </TouchableOpacity>
       </View>
     </ScrollView>

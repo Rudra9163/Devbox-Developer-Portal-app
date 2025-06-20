@@ -5,68 +5,59 @@ import { user, apiLogs } from "@/data/mockData";
 const Dashboard = () => {
   const getStatusStyle = (status: string) => {
     if (status.startsWith("2")) return styles.statusSuccess;
-    if (status.startsWith("4") || status.startsWith("5"))
-      return styles.statusFailed;
+    if (status.startsWith("4") || status.startsWith("5")) return styles.statusFailed;
     return {};
   };
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      <Text style={styles.headerProfile}>
+      <Text style={styles.headerProfile}  testID="welcome-message">
         Welcome to Devbox Developer Portal, {user.name}!
       </Text>
 
       <View style={styles.subContainer}>
         <View style={styles.profileSection}>
-          <Image source={{ uri: user.avatar }} style={styles.avatar} />
+          <Image source={{ uri: user.avatar }} style={styles.avatar}  testID="user-avatar"/>
           <View>
-            <Text>
-              <Text style={styles.bold}>Email:</Text> {user.email}
+            <Text testID="user-email">
+              <Text style={styles.bold} >Email:</Text> {user.email}
             </Text>
-            <Text>
+            <Text testID="user-role">
               <Text style={styles.bold}>Role:</Text> {user.role}
             </Text>
           </View>
         </View>
 
         <View style={styles.apiLogSection}>
-          <Text style={styles.apiHeading}>Recent API Calls</Text>
+          <Text style={styles.apiHeading} testID="api-heading">Recent API Calls</Text>
 
           <ScrollView horizontal style={styles.tableWrapper}>
             <View>
-              {/* Header Row */}
-              <View style={styles.tableHeader}>
-                <Text style={styles.apiNameColumn} numberOfLines={1}>
-                  API Name
-                </Text>
-                <Text style={styles.apiNameColumn} numberOfLines={1}>
-                  Time
-                </Text>
-                <Text style={styles.apiNameColumn} numberOfLines={1}>
-                  Status
-                </Text>
-                <Text style={styles.apiNameColumn} numberOfLines={1}>
+              <View style={styles.tableHeader} testID="table-header">
+                <Text style={[styles.cell, styles.apiNameColumn, styles.headerCell]}>API Name</Text>
+                <Text style={[styles.cell, styles.timeColumn, styles.headerCell]}>Time</Text>
+                <Text style={[styles.cell, styles.statusColumn, styles.headerCell]}>Status</Text>
+                <Text style={[styles.cell, styles.responseColumn, styles.headerCell]}>
                   Response Time
                 </Text>
               </View>
 
-              {/* Data Rows */}
               {apiLogs.map((log, index) => (
-                <View key={index} style={styles.tableRow}>
-                  <Text
-                    style={styles.apiNameColumn}
-                    numberOfLines={1}
-                    ellipsizeMode="tail"
-                  >
+                <View key={index} style={styles.tableRow} testID="api-log-row">
+                  <Text style={[styles.cell, styles.apiNameColumn]} numberOfLines={1}>
                     {log.name}
                   </Text>
-                  <Text style={styles.apiNameColumn}>{log.time}</Text>
+                  <Text style={[styles.cell, styles.timeColumn]}>{log.time}</Text>
                   <Text
-                    style={[styles.apiNameColumn, getStatusStyle(log.status)]}
+                    style={[
+                      styles.cell,
+                      styles.statusColumn,
+                      getStatusStyle(log.status),
+                    ]}
                   >
                     {log.status}
                   </Text>
-                  <Text style={styles.apiNameColumn}>{log.responseTime}</Text>
+                  <Text style={[styles.cell, styles.responseColumn]}>{log.responseTime}</Text>
                 </View>
               ))}
             </View>
@@ -76,13 +67,10 @@ const Dashboard = () => {
     </ScrollView>
   );
 };
-
-export default Dashboard;
-
 const styles = StyleSheet.create({
   container: {
     backgroundColor: "#f9f9f9",
-    minHeight: "100%",
+    paddingBottom: 40,
   },
   subContainer: {
     padding: 24,
@@ -100,7 +88,6 @@ const styles = StyleSheet.create({
   profileSection: {
     flexDirection: "row",
     alignItems: "center",
-    gap: 16,
     marginBottom: 32,
     padding: 13,
   },
@@ -131,9 +118,9 @@ const styles = StyleSheet.create({
   },
   tableWrapper: {
     width: "100%",
-    borderColor: "#000000",
-    borderWidth: 0.2,
-    borderRadius: 8,
+    borderColor:"#000",
+    borderWidth:0.4,
+    borderRadius:8,
   },
   tableHeader: {
     flexDirection: "row",
@@ -141,18 +128,20 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderColor: "#e2e8f0",
   },
+  headerCell: {
+    fontWeight: "600",
+    color: "#1f2937",
+  },
   tableRow: {
     flexDirection: "row",
+    backgroundColor: "#fff",
     borderBottomWidth: 1,
     borderColor: "#e5e7eb",
-    backgroundColor: "#fff",
   },
-  apiNameColumn: {
-    width: 108,
-    padding: 8,
-    fontSize: 12,
+  cell: {
+    padding: 12,
+    fontSize: 14,
     color: "#555",
-    textAlign: "left",
   },
   statusSuccess: {
     color: "#16a34a",
@@ -162,4 +151,18 @@ const styles = StyleSheet.create({
     color: "#dc2626",
     fontWeight: "500",
   },
+  apiNameColumn: {
+    width: 140,
+  },
+  timeColumn: {
+    width: 100,
+  },
+  statusColumn: {
+    width: 80,
+  },
+  responseColumn: {
+    width: 90,
+  },
 });
+
+export default Dashboard;
