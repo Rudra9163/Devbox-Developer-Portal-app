@@ -8,12 +8,12 @@ import {
   ActivityIndicator,
   ScrollView,
 } from 'react-native';
-
+import {  useRouter } from 'expo-router'; 
 const LoginPage = () => {
   const [formData, setFormData] = useState({ email: '', password: '' });
   const [isLoading, setIsLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
-
+const router = useRouter();
   const handleChange = (name: string, value: string) => {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
@@ -22,6 +22,7 @@ const LoginPage = () => {
     setIsLoading(true);
     await new Promise((res) => setTimeout(res, 1000));
     setIsLoading(false);
+    router.push('/Dashboards')
   };
 
   return (
